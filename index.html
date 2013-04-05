@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link rel="stylesheet" type="css/text" href="css/style.css">
+		<link rel="stylesheet" type="css/text" href="js/jquery-ui/css/dark-hive/jquery-ui-1.10.2.custom.css">
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+		<script src="js/clock.js" type="application/javascript"></script>
+		<script src="js/jquery-ui/js/jquery-1.9.1.js"></script> 
+		<script src="js/jquery-ui/js/jquery-ui-1.10.2.custom.js"></script>
+		<!-- Code to resize img borrowed from: https://github.com/gutierrezalex/photo-resize -->
+		<script src="js/jquery-photo-resize.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				// $("img").photoResize({
+				//	bottomSpacing: 15
+
+ 
+				PeopleArray();
+						
+				var debug = document.getElementById("debug_display");
+				debug.innerHTML = "";
+						
+				// seconds
+				var position = new Object()
+				position.x = 450;
+				position.y = 50;
+						
+				// minutes
+				var position2 = new Object()
+				position2.x = 350;
+				position2.y = 50;
+						
+				// hours
+				var position3 = new Object()
+				position3.x = 250;
+				position3.y = 50;
+						
+				// days
+				var position4 = new Object()
+				position4.x = 150;
+				position4.y = 50;
+						
+				// months
+				var position5 = new Object()
+				position5.x = 50;
+				position5.y = 50;
+
+				// Test age calculation
+				var personBirth = new Date();
+				personBirth.setUTCFullYear(1942);
+				personBirth.setUTCMonth(10);
+				personBirth.setUTCDate(27);
+				var personDeath = new Date();
+				personDeath.setUTCFullYear(1970);
+				personDeath.setUTCMonth(8);
+				personDeath.setUTCDate(18);
+					
+				var t = new Date();
+				t.setUTCFullYear(personDeath.getUTCFullYear() - personBirth.getUTCFullYear());
+				t.setUTCMonth(personDeath.getUTCMonth() - personBirth.getUTCMonth());
+				t.setUTCDate(personDeath.getUTCDate() - personBirth.getUTCDate());
+						
+				var userBirthDate = new Date();
+				userBirthDate.setUTCFullYear(1989);
+				userBirthDate.setUTCMonth(0);
+				userBirthDate.setUTCDate(4);
+				userBirthDate.setUTCHours(10);
+				userBirthDate.setUTCMinutes(30);
+				userBirthDate.setUTCSeconds(10);
+				
+				window.setInterval( function() { 
+				var timeLeft = TimeLeft(userBirthDate, personBirth, personDeath);
+				DrawSeconds(position, 40, timeLeft.getUTCSeconds()); 
+				DrawMinutes(position2, 40, timeLeft.getUTCMinutes());
+				DrawHours(position3, 40, timeLeft.getUTCHours());
+				DrawDays(position4, 40, timeLeft.getUTCDate());
+				DrawMonths(position5, 40, timeLeft.getUTCMonth());
+				DrawCaption("Some Caption", userBirthDate, personBirth, personDeath)
+				}, 1000);
+
+				$(window).load(function() {
+					var winWidth = $(window).width() 
+					if(winWidth < 1000){
+						$("#clock_wrapper").css("width","100%");
+					}
+					else { 
+						$("#clock_wrapper").css("width","1000px");
+					};
+				});
+				$( "#datepicker" ).datepicker();
+				var personBirthday = $(".birthday").val();
+				$(function() {
+				    $( "#menu" ).menu();
+				});
+			});
+		</script>
+		
+	</head>
+	<body style="margin: 0; padding: 0;background-color: #000;">
+		<div class="content_wrapper">
+			<div id="clock_wrapper">
+				<p id="debug_display">Nothing</p>
+				<canvas id="myCanvas" width="500" ></canvas>
+				<img style="float: left; width: 100%;" id="background_picture" src="img/jimmyHendrix.jpg" alt="[]"/>
+			</div>
+			<div id="personal_information">
+				<p class="personal_information">Your Birthday: <br /><input class="birthday" type="text" id="datepicker" /> </p>
+				<ul id="menu">
+					<li><a href="#">Jimmi Hendrix</a></li>
+					<li><a href="#">Another Dude</a></li>
+					<li><a href="#">And Another</a></li>
+					<li><a href="#">Still Another</a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+
+</html>

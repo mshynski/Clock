@@ -1,0 +1,54 @@
+body { 
+	margin: 0;
+	text-align: center;  
+	z-index: 0; 
+}
+#clock_wrapper {
+	margin: 0 auto;
+	position: relative;
+}
+.content_wrapper {
+	z-index: 0; 
+}
+
+p {
+	color: #EFEFEF;
+	z-index: 19;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#backgroud_picture {
+	position:relative;
+	z-index: 1;
+}
+
+#myCanvas {
+	z-index: 20; 
+	position: absolute;
+	top: 25;
+	left: 25;
+}
+
+
+#debugg_display {
+	top: -500px;
+}
+#personal_information {
+	float: left;
+	padding: 15px;
+}
+.personal_information {
+	font-size: 14pt;
+	font-weight: bold;
+	text-align: left;
+	color: #DDD;
+}
+.birthday {
+	border: 1px solid #AAA;
+	background-color: #333;
+	color: #DDD;
+	font-size: 20pt;
+	height: 29px;
+	width: 200px;
+	text-align: center;
+}
